@@ -185,8 +185,7 @@ let arrFibonacci = [];
 
 if (numb2 === 0) {
   arrFibonacci.push(0);
-}
-else if (numb2 === 1) {
+} else if (numb2 === 1) {
   arrFibonacci.push(0, 1);
 } else {
   arrFibonacci.push(0, 1);
@@ -206,24 +205,22 @@ let number234 = 13;
 let number234STR = number234.toString();
 let sumNumber234 = 0;
 let prodNumber234 = 1;
-for(let i = 0; i < number234STR.length;i++){
-    sumNumber234 += Number(number234STR[i]);
-    prodNumber234 *= Number(number234STR[i]);
+for (let i = 0; i < number234STR.length; i++) {
+  sumNumber234 += Number(number234STR[i]);
+  prodNumber234 *= Number(number234STR[i]);
 }
 
 console.log(sumNumber234);
 console.log(prodNumber234);
 
-if(number234 === 0){
-    console.log("Cannot calculate.");
-}
-else{
-    if(prodNumber234%sumNumber234 === 0){
-        console.log("Quotient is " + prodNumber234/sumNumber234);
-    }   
-    else{
-        console.log("Remainder is " + prodNumber234%sumNumber234);
-    } 
+if (number234 === 0) {
+  console.log("Cannot calculate.");
+} else {
+  if (prodNumber234 % sumNumber234 === 0) {
+    console.log("Quotient is " + prodNumber234 / sumNumber234);
+  } else {
+    console.log("Remainder is " + (prodNumber234 % sumNumber234));
+  }
 }
 
 /*
@@ -235,16 +232,16 @@ console.log("\n");
 let wordForRep = "_123_";
 let wordForRepArr = wordForRep.split("");
 console.log(wordForRepArr);
-let arrayWords = ["a","b"];
+let arrayWords = ["a", "b"];
 let count4 = 0;
 
-for(let i = 0; i < wordForRepArr.length;i++){
-    if(wordForRepArr[i] === "_"){
-        let arrVal = arrayWords[count4];
-        console.log(arrVal);
-        wordForRepArr[i] = arrVal;
-        count4++;
-    }
+for (let i = 0; i < wordForRepArr.length; i++) {
+  if (wordForRepArr[i] === "_") {
+    let arrVal = arrayWords[count4];
+    console.log(arrVal);
+    wordForRepArr[i] = arrVal;
+    count4++;
+  }
 }
 
 console.log(wordForRepArr.join());
@@ -252,5 +249,102 @@ console.log(wordForRepArr.join());
 /*
 13.Given a sentence with missing words and an array of words. Replace all ‘_ʼ in a sentence with the words
 from the array.
+
+let array23 = [8, 0, 1, "hey", 12, 5 , true, "2", null, 7, 3];
+let arrayNumb = [];
+
+for(let i = 0; i < array23.length;i++){
+
+    if(isNaN( +array23[i])){
+        arrayNumb.push(array23[i]);
+    }
+}
+
+console.log("\n\n");
+console.log(arrayNumb);
 */
 
+/*
+14.
+*/
+
+/*
+15.Given an array of strings. Find the strings with maximum and minimum lengths in array. Print the sum of
+theirlengths.
+*/
+
+let arraySTR = ["anymore", "raven", "me", "communicat11e"];
+let arrayLengths = [];
+let maxLength = 0;
+let linLength = 0;
+for (let i = 0; i < arraySTR.length; i++) {
+  let arraySTRElement = arraySTR[i].toString();
+  arrayLengths.push(arraySTRElement.length);
+}
+
+let minV = arrayLengths[0];
+let sortedArr1 = [];
+let minVal1 = arrayLengths[0];
+let maxVal11 = arrayLengths[0];
+for (let i = 0; i < arrayLengths.length; i++) {
+  if (minVal1 - arrayLengths[i] > 0) minVal1 = arrayLengths[i];
+
+  if (maxVal11 - arrayLengths[i] < 0) maxVal11 = arrayLengths[i];
+}
+
+let sumMaxMin = minVal1 + maxVal11;
+
+console.log(sumMaxMin);
+
+/*16.. Given an array of numbers and a number. Find the index of a first element which is equal to that number.
+If there is not such a number, that find the index of the first element which is the closest to it.
+*/
+let arr123 = [36, -12, 47, -58, 148, -55, -19, 10];
+let numb123 = -56;
+
+let closestVal = [];
+let ind = 0;
+let findNumb = false;
+for (let i = 0; i < arr123.length; i++) {
+  if (numb123 === arr123[i]) {
+    console.log(i);
+    findNumb = true;
+  } else {
+    ind = numb123 - arr123[i];
+    closestVal.push(Math.abs(ind));
+  }
+}
+
+let minClos = closestVal[0];
+for (let i = 0; i < closestVal.length; i++) {
+  if (minClos - closestVal[i] > 0) minClos = closestVal[i];
+}
+if (!findNumb) {
+  for (let i = 0; i < closestVal.length; i++) {
+    if (minClos === closestVal[i]) {
+      console.log(i);
+    }
+  }
+}
+
+/*17.. Given a sentence as a string. Split it according to space and comma and create an array consisting of the
+words of the array. The last word should not contain the last . or! .
+*/
+
+let str1111 = "Keep yourfriends close, but your enemies closer. or";
+let arrSPLTs = str1111.split(" ");
+let arraySplit = [];
+
+for (let arrSPLT in arrSPLTs) {
+  let spltArrs = arrSPLTs[arrSPLT].split(",");
+  for (let spltArr in spltArrs) {
+    if (spltArrs[spltArr] !== "") {
+      arraySplit.push(spltArrs[spltArr]);
+    }
+  }
+}
+console.log(arraySplit);
+if (arraySplit[arraySplit.length - 1] === "or") {
+  arraySplit.pop();
+}
+console.log(arraySplit);
