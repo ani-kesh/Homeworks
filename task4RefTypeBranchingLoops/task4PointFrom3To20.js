@@ -348,3 +348,47 @@ if (arraySplit[arraySplit.length - 1] === "or") {
   arraySplit.pop();
 }
 console.log(arraySplit);
+
+/*
+18.Given an array of a size smallerthan 100. It consists of numbers from 0 to 99 in any order. Create a new
+array where each element from that array is placed underthe index of its value. Start from the smallest
+value and end with the biggest one. If there are missing values, put in its places undefined.
+*/
+
+let givenArr = [26, 30, 19, 5];
+let existingArr = [];
+for (let i = 0; i < 100; i++) {
+  let val222 = undefined;
+  for (let j = 0; j < givenArr.length; j++) {
+    if (i === givenArr[j]) {
+      val222 = i;
+    }
+  }
+  existingArr.push(val222);
+}
+console.log(existingArr);
+
+/*
+19.Given an array consisting from the arrays of numbers (like a two-dimensional array). Find sum of each
+row and print them as an array.
+*/
+
+let arr765 = [[3, 4, 5], [1, 0, 0], [4, 5, 4], [8, 8, -1]];
+let sumValues = [];
+for(let i = 0; i < arr765.length; i++){
+    let sum765 = 0;
+    for(let j = 0; j < arr765[i].length; j++){
+        sum765 += arr765[i][j];
+    }
+    sumValues.push(sum765);
+}
+console.log(sumValues);
+
+/*20.Print the following pattern:
+1
+2 6
+3 7 10
+4 8 11 13
+5 9 12 14 15
+*/
+
