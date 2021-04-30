@@ -19,7 +19,7 @@ if (lastChar !== "0" && valueNumberSTR.length > 1) {
 console.log("\n3 point");
 console.log(replacedNum);
 /*
- 4.Check if a number is a multiple of 3, 5 or 7 and output the appropriate message.
+ 4.Check if a numberis a multiple of 3, 5 or 7 and output the appropriate message.
 */
 
 let selectedNumber = 2;
@@ -360,7 +360,7 @@ words of the array. The last word should not contain the last . or! .
 */
 console.log("\n17 point");
 
-let str1111 = "Keep yourfriends close, but your enemies closer. or";
+let str1111 = "Keep your friends close, but your enemies closer. or";
 let arrSPLTs = str1111.split(" ");
 let arraySplit = [];
 
@@ -379,15 +379,18 @@ if (arraySplit[arraySplit.length - 1] === "or") {
 console.log(arraySplit);
 
 /*
-18.Given an array of a size smallerthan 100. It consists of numbers from 0 to 99 in any order. Create a new
-array where each element from that array is placed underthe index of its value. Start from the smallest
+18.Given an array of a size smaller than 100. It consists of numbers from 0 to 99 in any order. Create a new
+array where each element from that array is placed under the index of its value. Start from the smallest
 value and end with the biggest one. If there are missing values, put in its places undefined.
 */
 console.log("\n18 point");
 
 let givenArr = [26, 30, 19, 5];
+givenArr.sort(function(a, b){return a - b});
+console.log(givenArr);
+
 let existingArr = [];
-for (let i = 0; i < 100; i++) {
+for (let i = givenArr[0]; i <= givenArr[givenArr.length-1]; i++) {
   let val222 = undefined;
   for (let j = 0; j < givenArr.length; j++) {
     if (i === givenArr[j]) {
@@ -450,3 +453,16 @@ for(let i = 0; i < 5; i++){
 }
   console.log(allArr);
 */
+
+let size = 5;
+
+let result = "";
+for (let i = 1; i <= size; i++) {
+  for (let j = 1, m = i; j <= i; j++) {
+    result += `${m}`;
+    m += size - j;
+  }
+  result += "\n";
+}
+
+console.log(result);
