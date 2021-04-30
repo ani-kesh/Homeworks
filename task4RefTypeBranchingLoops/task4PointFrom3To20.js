@@ -3,7 +3,6 @@
 /* 3.Given a positive integer. Bring the last digit of the numberto the beginning. Print the new number. If the
 last digit of the inserted numberis 0, numberremains the same.
 */
-
 let valueNumber = 850;
 let valueNumberSTR = valueNumber.toString();
 let replacedNum = valueNumber;
@@ -17,10 +16,10 @@ if (lastChar !== "0" && valueNumberSTR.length > 1) {
   replacedNum = lastChar + numberWithoutLC;
 }
 
+console.log("\n3 point");
 console.log(replacedNum);
-
 /*
- 4.Check if a numberis a multiple of 3, 5 or 7 and output the appropriate message.
+ 4.Check if a number is a multiple of 3, 5 or 7 and output the appropriate message.
 */
 
 let selectedNumber = 2;
@@ -50,12 +49,14 @@ if (
 } else {
   message += " is not a multiple of 3, 5 or 7.";
 }
-
+console.log("\n4 point");
 console.log(message);
 
 /*
 5.Given three numbers. Sort them by the ascending order.
  */
+
+console.log("\n5 point");
 
 let a = 12;
 let b = 6;
@@ -95,6 +96,7 @@ if (a < b && a < c) {
 /*
 6.Find the sign of product of three numbers without multiplication operator. Display the specified sign.
 */
+console.log("\n6 point");
 
 let findSign = [1, -1, -1];
 
@@ -121,6 +123,7 @@ if (zero > 0) {
 /*
 7.Insert a digit and a number. Check whetherthe digits contains in the number or not.
 */
+console.log("\n7 point");
 
 let numberForSRCH = 5;
 let textForSRCH = 14332;
@@ -137,6 +140,7 @@ console.log(isFind);
 /*
 8. Enter a number. Reverse its first and last digits. Print the new number.
 */
+console.log("\n8 point");
 
 let numberForReverse = 4556;
 let numberForReverse1 = numberForReverse.toString();
@@ -156,6 +160,7 @@ console.log(reversedNumber);
 /*
     9.Insert a number. Print ‘yesʼ if the numberis prime, ‘noʼ otherwise.
   */
+console.log("\n9 point");
 
 let isPrimeNumber = 63;
 let isPrime = "No";
@@ -180,6 +185,8 @@ console.log(isPrime);
 + ak-2)
    */
 
+console.log("\n10 point");
+
 let numb2 = 0;
 let arrFibonacci = [];
 
@@ -200,6 +207,7 @@ console.log(arrFibonacci);
 11.Insert a number. Calculate product and sum of the digits of the number. If product is divisible by the sum,
 print the quotient, otherwise print the remainder.
 */
+console.log("\n11 point");
 
 let number234 = 13;
 let number234STR = number234.toString();
@@ -227,7 +235,7 @@ if (number234 === 0) {
 12.Given a sentence with missing words and an array of words. Replace all ‘_ʼ in a sentence with the words
 from the array.
 */
-console.log("\n");
+console.log("\n12 point");
 
 let wordForRep = "_123_";
 let wordForRepArr = wordForRep.split("");
@@ -250,28 +258,45 @@ console.log(wordForRepArr.join());
 13.Given a sentence with missing words and an array of words. Replace all ‘_ʼ in a sentence with the words
 from the array.
 
-let array23 = [8, 0, 1, "hey", 12, 5 , true, "2", null, 7, 3];
+*/
+console.log("\n13 point");
+
+let array23 = [8, 0, 1, "hey", 12, 5, true, "2", null, 7, 3];
 let arrayNumb = [];
 
-for(let i = 0; i < array23.length;i++){
-
-    if(isNaN( +array23[i])){
-        arrayNumb.push(array23[i]);
-    }
+for (let i = 0; i < array23.length; i++) {
+  if (typeof array23[i] === "number") {
+    arrayNumb.push(array23[i]);
+  }
 }
 
-console.log("\n\n");
 console.log(arrayNumb);
-*/
-
 /*
-14.
+14.Given an array of strings and numbers. Print the number of integers and the number of strings in the
+array.
 */
 
+console.log("\n14 point");
+
+let arrayStrAndNumb = [1, "10", "hi", 2, 3];
+let quantityStr = 0;
+let quantityNumb = 0;
+
+for (let i = 0; i < arrayStrAndNumb.length; i++) {
+  if (typeof arrayStrAndNumb[i] === "number") {
+    quantityNumb++;
+  }
+  if (typeof arrayStrAndNumb[i] === "string") {
+    quantityStr++;
+  }
+}
+
+console.log("Numbers: " + quantityNumb + ", Strings: " + quantityStr);
 /*
 15.Given an array of strings. Find the strings with maximum and minimum lengths in array. Print the sum of
 theirlengths.
 */
+console.log("\n15 point");
 
 let arraySTR = ["anymore", "raven", "me", "communicat11e"];
 let arrayLengths = [];
@@ -299,6 +324,9 @@ console.log(sumMaxMin);
 /*16.. Given an array of numbers and a number. Find the index of a first element which is equal to that number.
 If there is not such a number, that find the index of the first element which is the closest to it.
 */
+
+console.log("\n16 point");
+
 let arr123 = [36, -12, 47, -58, 148, -55, -19, 10];
 let numb123 = -56;
 
@@ -330,6 +358,7 @@ if (!findNumb) {
 /*17.. Given a sentence as a string. Split it according to space and comma and create an array consisting of the
 words of the array. The last word should not contain the last . or! .
 */
+console.log("\n17 point");
 
 let str1111 = "Keep yourfriends close, but your enemies closer. or";
 let arrSPLTs = str1111.split(" ");
@@ -354,6 +383,7 @@ console.log(arraySplit);
 array where each element from that array is placed underthe index of its value. Start from the smallest
 value and end with the biggest one. If there are missing values, put in its places undefined.
 */
+console.log("\n18 point");
 
 let givenArr = [26, 30, 19, 5];
 let existingArr = [];
@@ -372,17 +402,25 @@ console.log(existingArr);
 19.Given an array consisting from the arrays of numbers (like a two-dimensional array). Find sum of each
 row and print them as an array.
 */
+console.log("\n19 point");
 
-let arr765 = [[3, 4, 5], [1, 0, 0], [4, 5, 4], [8, 8, -1]];
+let arr765 = [
+  [3, 4, 5],
+  [1, 0, 0],
+  [4, 5, 4],
+  [8, 8, -1],
+];
 let sumValues = [];
-for(let i = 0; i < arr765.length; i++){
-    let sum765 = 0;
-    for(let j = 0; j < arr765[i].length; j++){
-        sum765 += arr765[i][j];
-    }
-    sumValues.push(sum765);
+for (let i = 0; i < arr765.length; i++) {
+  let sum765 = 0;
+  for (let j = 0; j < arr765[i].length; j++) {
+    sum765 += arr765[i][j];
+  }
+  sumValues.push(sum765);
 }
 console.log(sumValues);
+
+console.log("\n20 point");
 
 /*20.Print the following pattern:
 1
@@ -390,5 +428,25 @@ console.log(sumValues);
 3 7 10
 4 8 11 13
 5 9 12 14 15
-*/
 
+
+let arr1To15 = [];
+
+for(let i = 1; i <= 15;i++){
+  arr1To15.push(i);
+}
+
+let allArr = [];
+let workQuantity = 0;
+for(let i = 0; i < 5; i++){
+  for(let j = 0; j < 5; j++){
+    if(i === j || i > j){
+     allArr.push(++workQuantity);
+    }
+    else{
+      allArr.push("");
+    }    
+  }
+}
+  console.log(allArr);
+*/
