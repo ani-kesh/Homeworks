@@ -18,6 +18,7 @@
 # Task 4
 
 - Reference Types.Branching loops
+
   - [arrays.js](task4RefTypeBranchingLoops/arrays.js)
   - [capitalize.js](task4RefTypeBranchingLoops/capitalize.js)
   - [objects.js](task4RefTypeBranchingLoops/objects.js)
@@ -28,5 +29,11 @@
   - [task4Switch.js](task4RefTypeBranchingLoops/task4Switch.js)
   - [task4WhileAndFor.js](task4RefTypeBranchingLoops/task4WhileAndFor.js)
   - [whileDoWhile.js](task4RefTypeBranchingLoops/whileDoWhile.js)
-  
-  
+
+  # Task 5
+
+  - Type Coercion for primitives
+    - [guessTest.js](task5TypeCoercionForPrimitives/guessTest.js)
+    - [whyAnswers.js](task5TypeCoercionForPrimitives/whyAnswers.js)
+    - [convertToInt.js](task5TypeCoercionForPrimitives/convertToInt.js)
+    - [convertToFloat1.js](task5TypeCoercionForPrimitives/convertToFloat1.js)
