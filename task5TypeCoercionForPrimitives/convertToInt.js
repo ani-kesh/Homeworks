@@ -3,12 +3,17 @@
 function convertToInt(stringForConvert) {
   stringForConvert = String(stringForConvert);
 
+  stringForConvert = stringForConvert.trim();
+
   console.log("JS parseInt is equal " + parseInt(stringForConvert));
 
   let result = "";
+
   let isMinus = false;
+
   if (stringForConvert[0] === "-") {
     isMinus = true;
+
     stringForConvert = stringForConvert.slice(1, stringForConvert.length);
   }
 
@@ -42,7 +47,9 @@ function convertToInt(stringForConvert) {
           result = "16system";
         } else {
           if (
-            (stringForConvert[1] === "." || isNaN(stringForConvert[1])) &&
+            (stringForConvert[1] === "." ||
+              stringForConvert[1] === " " ||
+              isNaN(stringForConvert[1])) &&
             stringForConvert[1] !== "x"
           ) {
             result = "0";
@@ -58,6 +65,7 @@ function convertToInt(stringForConvert) {
             if (Number(index) === 0) {
               result = NaN;
             }
+
             break;
           }
         }
@@ -69,8 +77,10 @@ function convertToInt(stringForConvert) {
     let number16System = stringForConvert.slice(2, stringForConvert.length);
 
     let converted = 0;
+
     for (let i = number16System.length - 1; i >= 0; i--) {
       let numb16In10 = number16System[i];
+
       if (
         stringForConvert[2] === "0" ||
         stringForConvert[2] === "1" ||
@@ -99,11 +109,14 @@ function convertToInt(stringForConvert) {
         converted += numb16In10 * Math.pow(16, number16System.length - 1 - i);
       }
     }
+
     result = converted;
   }
 
   if (!isNaN(result) && isMinus && Number(result) !== 0) result = "-" + result;
-  console.log("My parseInt is equal " + result);
+
+  return result;
 }
 
-convertToInt("0xk"); // if here input 0x a,b c,d,e,f and after another charachter, then code not working
+let convertedValue = convertToInt("0 10");
+console.log("My parseInt is equal " + convertedValue);
