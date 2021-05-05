@@ -1,8 +1,8 @@
 "use strict";
 
 /*12. Write a function, which will receive a number between 0 to 999,999 and spell out that number in English.*/
-
-let numberInEnglish1 = numberInEnglish(1245);
+let numberInEnglish1 = numberInEnglish(12347);
+console.log(numberInEnglish1);
 
 function numberInEnglish(number) {
   let ones = [
@@ -48,13 +48,11 @@ function numberInEnglish(number) {
     inEnglish = returnTens(number);
   } else if (number % 1000 === number) {
     inEnglish = returnHundreds(number);
-  } else if (number % 10000 === number) {
-    //inEnglish = returnThousands(number);
+  } else if (String(number % 10000).length >= 4) {
+    inEnglish = returnThousands(number);
   }
   return inEnglish;
 }
-
-console.log(numberInEnglish1);
 
 function returnTens(number) {
   let ones = [
@@ -169,37 +167,17 @@ function returnThousands(number) {
     "eight",
     "nine",
   ];
-  let teens = [
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen",
-  ];
-  let tens = [
-    "ten",
-    "twenty",
-    "thirty",
-    "forty",
-    "fifty",
-    "sixty",
-    "seventy",
-    "eighty",
-    "ninety",
-  ];
 
   let inEnglish = "";
 
-  if (number % 1000 === 0) {
-    inEnglish =
-      ones[parseInt(number / 1000)] +
-      " thousands" +
-      returnHundreds(number % 1000);
-  }
-  return inEnglish;
+  let thousands = parseInt(number / 1000);
+  inEnglish +=
+    String(thousands).length === 1
+      ? ones[thousands]
+      : String(thousands).length === 2
+      ? returnTens(thousands)
+      : returnHundreds(thousands);
+  let hundreds = " thousands " + returnHundreds(number % 1000);
+
+  return inEnglish + hundreds;
 }
