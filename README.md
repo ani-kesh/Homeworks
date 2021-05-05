@@ -37,3 +37,23 @@
     - [whyAnswers.js](task5TypeCoercionForPrimitives/whyAnswers.js)
     - [convertToInt.js](task5TypeCoercionForPrimitives/convertToInt.js)
     - [convertToFloat1.js](task5TypeCoercionForPrimitives/convertToFloat1.js)
+
+# Task 6
+
+- Intro to Functions
+  - [compareObjects.js](task6Functions/compareObjects.js)
+  - [correctSublist.js](task6Functions/correctSublist.js)
+  - [findBiggestNegativeValueOfArr.js](task6Functions/findBiggestNegativeValueOfArr.js)
+  - [findEvenNumbersForInterval.js](task6Functions/findEvenNumbersForInterval.js)
+  - [findLongestString.js](task6Functions/findLongestString.js)
+  - [getArrayPossibleSubsets.js](task6Functions/getArrayPossibleSubsets.js)
+  - [greaterThenGivenNumber.js](task6Functions/greaterThenGivenNumber.js)
+  - [groupOf3Chars.js](task6Functions/groupOf3Chars.js)
+  - [invertObject.js](task6Functions/invertObject.js)
+  - [isValidPhone.js](task6Functions/isValidPhone.js)
+  - [mathOperationsForArrays.js](task6Functions/mathOperationsForArrays.js)
+  - [removeStringByVal.js](task6Functions/removeStringByVal.js)
+  - [separateInOddEvenArrays.js](task6Functions/separateInOddEvenArrays.js)
+  - [sortArrayByValue.js](task6Functions/sortArrayByValue.js)
+  - [sumPossibleLargestNumb.js](task6Functions/sumPossibleLargestNumb.js)
+  - [task10.js](task6Functions/task10.js)

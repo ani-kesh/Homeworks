@@ -9,5 +9,6 @@ elements in the array are unique.
 let arrays = getArrayPossibleSubsets([5, 9, 23, 0, -2, -1]);
 
 function getArrayPossibleSubsets(array) {
-  return arrays;
+
+    return arrays;
 }
