@@ -57,3 +57,18 @@
   - [sortArrayByValue.js](task6Functions/sortArrayByValue.js)
   - [sumPossibleLargestNumb.js](task6Functions/sumPossibleLargestNumb.js)
   - [task10.js](task6Functions/task10.js)
+
+# Task 7
+
+- Closure
+  - [addSuffix.js](task7Closure/addSuffix.js)
+  - [calculatePartialSum.js](task7Closure/calculatePartialSum.js)
+  - [filterByLength.js](task7Closure/filterByLength.js)
+  - [filterInArray.js](task7Closure/filterInArray.js)
+  - [isogram.js](task7Closure/isogram.js)
+  - [largestProduct.js](task7Closure/largestProduct.js)
+  - [palindrome.js](task7Closure/palindrome.js)
+  - [printAfter.js](task7Closure/printAfter.js)
+  - [returnStr.js](task7Closure/returnStr.js)
+  - [sumOfQuadraticEvenElement.js](task7Closure/sumOfQuadraticEvenElement.js)
+  - [uniqueArray.js](task7Closure/uniqueArray.js)

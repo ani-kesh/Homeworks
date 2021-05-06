@@ -44,20 +44,27 @@ function convertToFloat1(stringForConvert) {
     } else {
       let stringBeforePoint = stringForConvert.slice(0, indexOfPoint);
       let stringAfterPoint = stringForConvert.slice(
-        indexOfPoint + 1,
-        stringForConvert.length
+        indexOfPoint + 1
       );
 
+      let invalidNumb = true;
       for (let index in stringBeforePoint) {
         if (!isNaN(stringBeforePoint[index])) {
           result += stringBeforePoint[index];
         }
+        else{
+          invalidNumb = false;
+          break;
+        }
       }
       let numberAfterPoint = 0;
-      if (!isNaN(result)) {
-        for (let index in stringAfterPoint) {
+      if (!isNaN(result) && invalidNumb) {
+        for (let index in stringAfterPoint) { 
           if (!isNaN(stringAfterPoint[index])) {
             numberAfterPoint += Number(stringAfterPoint[index]);
+          }
+          else{
+            break;
           }
         }
       }
@@ -72,5 +79,5 @@ function convertToFloat1(stringForConvert) {
   return result;
 }
 
-let convertedValue = convertToFloat1("012.4");
+let convertedValue = convertToFloat1("13g.05ss7");
 console.log("My parseFloat is equal " + convertedValue);
