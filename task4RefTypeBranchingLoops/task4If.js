@@ -25,7 +25,7 @@ console.log("2\n");
 function alertNumber() {
   let userInput = prompt("Input number");
   let userInputNumb = Number(userInput);
-  if (userInputNumb !== null) {
+  if (userInputNumb !== null && !isNaN(userInputNumb)) {
     if (userInputNumb === 0) {
       alert(0);
     } else if (userInputNumb > 0) {
@@ -33,6 +33,8 @@ function alertNumber() {
     } else {
       alert(-1);
     }
+  } else {
+    alert("Enter the number");
   }
 }
 
