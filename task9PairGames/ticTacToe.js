@@ -68,11 +68,7 @@ while (true) {
     console.log("The board is full, nobody won");
     break;
   }
-  if (player === "x") {
-    player = "o";
-  } else {
-    player = "x";
-  }
+  player = player === "x" ? "o" : "x";
 }
 
 console.log(board[0]);
