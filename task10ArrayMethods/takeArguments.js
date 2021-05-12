@@ -11,8 +11,7 @@ function sum() {
     sum(1, 2, 3); // prints 6
 
 */
-function sum() {
-  let args = Array.from(arguments);
+function sum(...args) {  
   return args.reduce((sum, current) => {
     return sum + current;
   });

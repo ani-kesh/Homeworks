@@ -3,9 +3,7 @@
 let array = [1, 2, 1, 6, 1];
 function forEach(array, functionName) {
   for (let i = 0; i < array.length; i++) {
-    let element = array[i];
-
-    functionName(element);
+    functionName(array[i]);
   }
 }
 

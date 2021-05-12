@@ -2,38 +2,34 @@
 
 let array = [1, 2, 1, 6, 1];
 
-function splice(array, start) {
-  let args = Array.from(arguments);
-  if (args.length > 3) {
-    let elements = [];
-    for (let i = 3; i < args.length; i++) {
-      elements.push(args[i]);
-    }
-    spliceAdd(array, start, elements);
-  } else {
-    spliceRemove(array, start);
-  }
+function splice(...args) {
+  let [start, elements, ...valueForPush] = args;
+
+  if (valueForPush.length > 0 && elements === 0) {
+    return spliceAdd(start, valueForPush);
+  } else return spliceRemove(start, elements);
 }
 
-function spliceAdd(array, start, elements) {
-  console.log(elements);
+function spliceAdd(start, valueForPush) {
+  let arrayStart = array.filter((element, index) => index < start);
+  let arrayEnd = array.filter((element, index) => index >= start);
+  array = [...arrayStart, ...valueForPush, ...arrayEnd];
+  return array;
+}
 
-  let indexEl = 0;
+function spliceRemove(start, elements) {
+  if (elements !== 0) {
+    let splicedArray = [];
+    if (elements === undefined || start + elements > array.length)
+      elements = array.length - start;
 
-  for (let i = start; i < array.length + elements.length; i++) {}
+    for (let i = start; i < start + elements; i++) {
+      splicedArray.push(array[i]);
+    }
+    array = splicedArray;
+  }
 
   return array;
 }
 
-function spliceRemove(array, start) {
-  let splicedArray = [];
-  if (elements === undefined || start + elements > array.length)
-    elements = array.length - start;
-
-  for (let i = start; i < start + elements; i++) {
-    splicedArray.push(array[i]);
-  }
-  return splicedArray;
-}
-
-console.log(splice(array, 2, 0, "a", "b"));
+console.log(splice(2, 0, "a", "b"));
