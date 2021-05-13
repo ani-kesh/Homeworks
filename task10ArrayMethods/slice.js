@@ -12,4 +12,4 @@ function slice(array, start, end) {
   return slicedArray;
 }
 
-console.log(slice(array, 3, 6));
+console.log(slice(array, 2, 6));
