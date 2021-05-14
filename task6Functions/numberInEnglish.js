@@ -36,7 +36,7 @@ let tens = [
 ];
 
 /*12. Write a function, which will receive a number between 0 to 999,999 and spell out that number in English.*/
-let numberInEnglish1 = numberInEnglish(99999);
+let numberInEnglish1 = numberInEnglish(9);
 console.log(numberInEnglish1);
 
 function numberInEnglish(number) {
