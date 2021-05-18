@@ -2,7 +2,7 @@
 
 //The function should produce the same output even if dateStart is greater than dateEnd
 
-let january = new Date(2017, 0, 1);
+let january = new Date(2018, 0, 1);
 let march = new Date(2017, 2, 1);
 
 function monthsInterval(start, end) {
