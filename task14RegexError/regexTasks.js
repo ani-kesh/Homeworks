@@ -5,9 +5,9 @@
 // Only numerical characters (0-9).
 // No whitespace.
 
-let myRegExp = new RegExp("^([0-9]{6,6})*$|^([0-9]{4,4})*$");
+let myRegExp = new RegExp("^([0-9]{6})$|^([0-9]{4})$");
 
-console.log(myRegExp.test("44448 "));
+console.log(myRegExp.test("4444 5"));
 
 // const REGEXP = /abc/;
 // let str = '<> <a href="/"> <input type="radio" checked> <b>';
