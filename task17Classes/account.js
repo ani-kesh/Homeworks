@@ -1,6 +1,6 @@
 class Account {
   constructor(name, balance) {
-    this._id = Account.idVal;
+    this.id = Account.idVal;
     this._name = name;
     this._balance = balance;
     Account.idVal++;
@@ -11,10 +11,6 @@ class Account {
   }
   set balance(balance) {
     this._balance = balance;
-  }
-
-  get id() {
-    return this._id;
   }
 
   get name() {
@@ -47,7 +43,7 @@ class Account {
   }
 
   static identifyAccounts(accountFirst, accountSecond) {
-    if (accountFirst._name === accountSecond._name) return true;
+    if (accountFirst._id === accountSecond._id) return true;
     else return false;
   }
 
