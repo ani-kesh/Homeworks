@@ -1,0 +1,111 @@
+#container {
+  width: auto;
+  min-height: 96vh;
+  padding: 10px 0px 0px 35%;
+  background-color: #f0ffff;
+}
+ul {
+  width: 400px;
+}
+ul li {
+  background-color: #008b8b;
+}
+ul#tasks {
+  list-style-type: none;
+  margin: 2px 2px 0px 2px;
+  padding: 0;
+}
+ul#tasksControl {
+  list-style-type: none;
+  margin: 0px 2px 2px 2px;
+  padding: 0;
+}
+li {
+  width: 400px;
+  border: 1px solid #f0ffff;
+  border-bottom: none;
+  vertical-align: middle;
+  height: 50px;
+}
+ul#tasksControl li {
+  border-top: none;
+}
+input[type="text"] {
+  border: none;
+  width: 280px;
+  margin-left: 5px;
+  height: 30px;
+  background-color: #008b8b;
+  font-size: 18px;
+  color: #f0fff0;
+}
+
+input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+}
+input[type="button"] {
+  background-color: #f0ffff;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.6;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+}
+input[type="button"]:hover,
+input[type="button"]:active {
+  opacity: 1;
+}
+#addNewTask {
+  height: 30px;
+}
+li:last-child {
+  border: 1px solid #f0ffff;
+}
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: 50px 300px 50px;
+  padding-top: 10px;
+}
+.grid-containerButtons {
+  display: inline-grid;
+  grid-template-columns: 200px 40px 62px 95px;
+  padding-top: 10px;
+}
+.grid-itemButtons {
+  text-align: right;
+}
+.grid-item3 {
+  text-align: right;
+  margin-right: 10px;
+}
+.grid-item3 span:hover {
+  cursor: pointer;
+}
+i {
+  margin-left: 15px;
+}
+span.taskName {
+  -webkit-text-decoration-line: line-through; /* Safari */
+  text-decoration-line: line-through;
+  font-size: 20px;
+  padding-left: 8px;
+  color: #f0fff0;
+}
+#itemsLeft {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 20px;
+  color: #f0ffff;
+}
+#newTask {
+  background-color: #f0ffff;
+  color: #000;
+}
+
+.pointerEvent{
+  pointer-events:none;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ArmTours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="toDoList.js" defer></script>
+    <link rel="stylesheet" href="toDoList.css">
+</head>
+
+<body>
+    <main>
+        <div id="container">
+            <ul id="tasks">
+            </ul>
+            <ul id="tasksControl">
+                <li>
+                    <div class="grid-containerButtons">
+                        <div class="grid-itemButtons" id="itemsLeft"><span id="quantityOpenTasks"></span> items left
+                        </div>
+                        <div class="grid-itemButtons"><input type="button" value="All" onclick="AllTasks()" /></div>
+                        <div class="grid-itemButtons"><input type="button" value="Active" onclick="ActiveTasks()" />
+                        </div>
+                        <div class="grid-itemButtons"><input type="button" value="Completed"
+                                onclick="CompletedTasks()" /></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+</body>
+
+</html>
