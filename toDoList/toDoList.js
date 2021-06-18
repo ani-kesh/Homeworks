@@ -229,3 +229,16 @@ function CreateTaskLine(numb,taskName,isDone){
 
   return gridContainer;
 }
+
+
+document.getElementById("all-button").addEventListener('click',()=>{
+  AllTasks();
+});
+
+document.getElementById("active-button").addEventListener('click',()=>{
+  ActiveTasks();
+});
+
+document.getElementById("completed-button").addEventListener('click',()=>{
+  CompletedTasks()
+});
