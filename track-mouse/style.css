@@ -1,0 +1,11 @@
+.container{
+    width:100%;
+    height:100vh;
+    background-color:lightgrey;
+}
+
+.mouseXY{
+    position:absolute;
+    font-size: 19px;
+    background-color: rgb(163, 240, 22);
+}
