@@ -18,13 +18,13 @@ window.onload = function load() {
   localStorage.setItem("hour", 0);
 };
 
-let saveTimerValue = function () {    
+let saveTimerValue = function () {
   localStorage.setItem("second", sec.value);
   localStorage.setItem("minute", min.value);
   localStorage.setItem("hour", hour.value);
 };
 
-let startTimer = function () {    
+let startTimer = function () {
   clearInterval(setIntervalId);
   clearTimeout(setTimeoutId);
   let secondValue =
@@ -66,7 +66,7 @@ let startTimer = function () {
 reset.addEventListener("click", () => {
   clearInterval(setIntervalId);
   clearTimeout(setTimeoutId);
-  
+
   let second = Number(localStorage.getItem("second"));
   let minute = Number(localStorage.getItem("minute"));
   let hour = Number(localStorage.getItem("hour"));
