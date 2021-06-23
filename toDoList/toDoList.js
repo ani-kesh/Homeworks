@@ -56,8 +56,8 @@ function CreateTaskList() {
 
   for (let i = 0; i < Tasks.length; i++) {
     let li = document.createElement("LI");
-    let line = CreateTaskLine(i,Tasks[i].name,Tasks[i].isDone);
-      li.append(line);
+    let line = CreateTaskLine(i, Tasks[i].name, Tasks[i].isDone);
+    li.append(line);
     ul.appendChild(li);
   }
 
@@ -65,27 +65,28 @@ function CreateTaskList() {
 }
 
 function TaskIsDone(id) {
-  let isTaskDone = document.getElementById(id).checked;
   let indexOfTask = id.replace("ch_", "");
-  if (isTaskDone) {
-    let taskName = document.getElementById("taskName" + indexOfTask).value;
-    document.getElementById("taskNameDiv" + indexOfTask).innerHTML =
-      "<span class='taskName'>" + taskName + "</span>";
-    document.getElementById("close" + indexOfTask).innerHTML = "";
-    document.getElementById(id).style.pointerEvents = "none";
-    Tasks[indexOfTask].isDone = true;
-  }
+
+  let taskName = document.getElementById("taskName" + indexOfTask).value;
+  document.getElementById("taskNameDiv" + indexOfTask).innerHTML =
+    "<span class='taskName'>" + taskName + "</span>";
+  document.getElementById("close" + indexOfTask).innerHTML = "";
+  document.getElementById("edit" + indexOfTask).style.display = "none";
+  document.getElementById(id).style.pointerEvents = "none";
+  Tasks[indexOfTask].isDone = true;
+
   CalculateOpenTasks();
 }
 
 function EditTaskName(index) {
   let tasksList = document.getElementById("tasks");
+  if (tasksList !== null) {
+    let value = document.getElementById("taskName" + index).value;
+    Tasks[index].name = value;
 
-  let value = document.getElementById("taskName" + index).value;
-  Tasks[index].name = value;
-
-  tasksList.innerHTML = "";
-  CreateTaskList();
+    tasksList.innerHTML = "";
+    CreateTaskList();
+  }
 }
 
 function CalculateOpenTasks() {
@@ -117,7 +118,7 @@ function CompletedTasks() {
   for (let i = 0; i < Tasks.length; i++) {
     if (Tasks[i].isDone) {
       let li = document.createElement("LI");
-      let line = CreateTaskLine(i,Tasks[i].name,Tasks[i].isDone);
+      let line = CreateTaskLine(i, Tasks[i].name, Tasks[i].isDone);
       li.append(line);
       tasksList.appendChild(li);
     }
@@ -137,7 +138,7 @@ function ActiveTasks() {
   for (let i = 0; i < Tasks.length; i++) {
     if (!Tasks[i].isDone) {
       let li = document.createElement("LI");
-      let line = CreateTaskLine(i,Tasks[i].name,Tasks[i].isDone);
+      let line = CreateTaskLine(i, Tasks[i].name, Tasks[i].isDone);
       li.append(line);
       tasksList.appendChild(li);
     }
@@ -180,47 +181,79 @@ function CreateFirstLi() {
   return gridContainer;
 }
 
-function CreateTaskLine(numb,taskName,isDone){
+function EditTaskName(id) {
+  let readOnlyField = document.getElementById(id);
+  if (readOnlyField !== null) {
+    readOnlyField.readOnly = false;
+    readOnlyField.focus();
+  }
+}
+
+function CreateTaskLine(numb, taskName, isDone) {
   let gridContainer = document.createElement("div");
   gridContainer.classList.add("grid-container");
-  gridContainer.setAttribute("id",`task${numb}`);
+  gridContainer.setAttribute("id", `task${numb}`);
 
   let gridItem1 = document.createElement("div");
   gridItem1.classList.add("grid-item");
 
   let gridItem2 = document.createElement("div");
   gridItem2.classList.add("grid-item");
-  gridItem2.setAttribute("id",`taskNameDiv${numb}`);
+  gridItem2.setAttribute("id", `taskNameDiv${numb}`);
 
   let gridItem3 = document.createElement("div");
   gridItem3.classList.add("grid-item3");
 
-  let inputGridItem1 = document.createElement("input");
-  inputGridItem1.type = "checkbox";
-  inputGridItem1.setAttribute("id",`ch_${numb}`);  
-  inputGridItem1.addEventListener("change", () => {TaskIsDone(`ch_${numb}`);});
-  
-  let inputGridItem2 = (isDone === true)?document.createElement("span"):document.createElement("input");
-  if(isDone === true){
-    inputGridItem1.checked = true;   
-    inputGridItem2.classList.add("taskName","pointerEvent");
-    inputGridItem2.setAttribute("id",`ch_${numb}`);  
+  let inputGridItem2 =
+    isDone === true
+      ? document.createElement("span")
+      : document.createElement("input");
+  if (isDone === true) {
+    inputGridItem2.classList.add("taskName", "pointerEvent");
+    inputGridItem2.setAttribute("id", `ch_${numb}`);
     inputGridItem2.innerText = taskName;
-  }
-  else{ 
+  } else {
     inputGridItem2.type = "text";
-    inputGridItem2.setAttribute("id",`taskName${numb}`);
-    inputGridItem2.setAttribute("value",taskName);
-    inputGridItem2.addEventListener("change", () => {EditTaskName(numb);});
+    inputGridItem2.setAttribute("id", `taskName${numb}`);
+    inputGridItem2.setAttribute("value", taskName);
+    inputGridItem2.addEventListener("change", () => {
+      EditTaskName(numb);
+    });
   }
 
+  inputGridItem2.readOnly = true;
   let inputGridItem3 = document.createElement("span");
-  inputGridItem3.setAttribute("id",`close${numb}`);
-  inputGridItem3.innerHTML = "&times;";  
-  inputGridItem3.addEventListener("click", () => {DeleteTask(numb);});
-  
-  gridItem1.append(inputGridItem1);
+  inputGridItem3.setAttribute("id", `close${numb}`);
+  inputGridItem3.innerHTML = "&times;";
+  inputGridItem3.addEventListener("click", () => {
+    DeleteTask(numb);
+  });
+
+  let inputGridItem4 = document.createElement("span");
+  inputGridItem4.setAttribute("id", `ch_${numb}`);
+  inputGridItem4.innerHTML = "&#10003;";
+  inputGridItem4.addEventListener("click", () => {
+    TaskIsDone(`ch_${numb}`);
+  });
+
+  let inputGridItem5 = document.createElement("span");
+  inputGridItem5.setAttribute("id", `edit${numb}`);
+  inputGridItem5.innerHTML = "&#9998;";
+  inputGridItem5.addEventListener("click", () => {
+    EditTaskName(`taskName${numb}`);
+  });
+
+  if (isDone === true) {
+    inputGridItem3.style.display = "none";
+    inputGridItem5.style.display = "none";
+  } else {
+    inputGridItem3.style.display = "static";
+    inputGridItem5.style.display = "static";
+  }
+
   gridItem2.append(inputGridItem2);
+  gridItem3.append(inputGridItem5);
+  gridItem3.append(inputGridItem4);
   gridItem3.append(inputGridItem3);
 
   gridContainer.append(gridItem1);
@@ -230,15 +263,27 @@ function CreateTaskLine(numb,taskName,isDone){
   return gridContainer;
 }
 
+function DeleteAllTasks() {
+  let tasksList = document.getElementById("tasks");
 
-document.getElementById("all-button").addEventListener('click',()=>{
+  tasksList.innerHTML = "";
+  Tasks.length = 0;
+
+  CreateTaskList();
+}
+
+document.getElementById("all-button").addEventListener("click", () => {
   AllTasks();
 });
 
-document.getElementById("active-button").addEventListener('click',()=>{
+document.getElementById("active-button").addEventListener("click", () => {
   ActiveTasks();
 });
 
-document.getElementById("completed-button").addEventListener('click',()=>{
-  CompletedTasks()
+document.getElementById("completed-button").addEventListener("click", () => {
+  CompletedTasks();
+});
+
+document.getElementById("delete-button").addEventListener("click", () => {
+  DeleteAllTasks();
 });

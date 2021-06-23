@@ -67,12 +67,12 @@ li:last-child {
 }
 .grid-container {
   display: inline-grid;
-  grid-template-columns: 50px 300px 50px;
+  grid-template-columns: 10px 320px 70px;
   padding-top: 10px;
 }
 .grid-containerButtons {
   display: inline-grid;
-  grid-template-columns: 200px 40px 62px 95px;
+  grid-template-columns: 110px 40px 62px 95px 90px;
   padding-top: 10px;
 }
 .grid-itemButtons {
@@ -82,6 +82,11 @@ li:last-child {
   text-align: right;
   margin-right: 10px;
 }
+
+.grid-item3 span {
+  margin: 5px;
+}
+
 .grid-item3 span:hover {
   cursor: pointer;
 }
@@ -106,6 +111,6 @@ span.taskName {
   color: #000;
 }
 
-.pointerEvent{
-  pointer-events:none;
+.pointerEvent {
+  pointer-events: none;
 }
