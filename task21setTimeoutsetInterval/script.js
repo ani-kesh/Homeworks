@@ -9,6 +9,12 @@ let setIntervalId = Infinity;
 let setTimeoutId = Infinity;
 let localStorage = window.localStorage;
 
+let setReadOnly = function(value){
+  hour.readOnly = value;
+  min.readOnly = value;
+  sec.readOnly = value;
+}
+
 window.onload = function load() {
   hour.value = 0;
   sec.value = 0;
@@ -16,6 +22,7 @@ window.onload = function load() {
   localStorage.setItem("second", 0);
   localStorage.setItem("minute", 0);
   localStorage.setItem("hour", 0);
+  setReadOnly(false);
 };
 
 let saveTimerValue = function () {
@@ -27,6 +34,10 @@ let saveTimerValue = function () {
 let startTimer = function () {
   clearInterval(setIntervalId);
   clearTimeout(setTimeoutId);
+
+  setReadOnly(true);
+ 
+
   let secondValue =
     sec.value !== "" && !isNaN(sec.value) ? Number(sec.value) : 0;
   let minuteValue =
@@ -67,6 +78,7 @@ reset.addEventListener("click", () => {
   clearInterval(setIntervalId);
   clearTimeout(setTimeoutId);
 
+  setReadOnly(false);
   let second = Number(localStorage.getItem("second"));
   let minute = Number(localStorage.getItem("minute"));
   let hour = Number(localStorage.getItem("hour"));
@@ -83,6 +95,8 @@ start.addEventListener("click", () => {
 stop.addEventListener("click", () => {
   clearInterval(setIntervalId);
   clearTimeout(setTimeoutId);
+  
+  setReadOnly(false);
 });
 
 hour.addEventListener("change", (evt) => {
