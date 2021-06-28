@@ -1,0 +1,14 @@
+#film-form {
+  width: 40%;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: cadetblue;
+}
+
+#film-form input,
+textarea {
+  margin: 20px;
+  padding: 10px;
+  min-width: 200px;
+  width: 60%;
+}
