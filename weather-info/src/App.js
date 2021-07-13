@@ -7,36 +7,43 @@ import rain from "./components/img/17.svg";
 
 const weatherInfo = [
   {
+    id:1,
     weekDey: "Monday",
     imgURL: sunny,
     temp: "36C",
   },
   {
+    id:2,
     weekDey: "Tuesday",
     imgURL: thunderstorm,
     temp: "32C",
   },
   {
+    id:3,
     weekDey: "Wednesday",
     imgURL: mostlySunny,
     temp: "35C",
   },
   {
+    id:4,
     weekDey: "Thursday",
     imgURL: sunny,
     temp: "45C",
   },
   {
+    id:5,
     weekDey: "Friday",
     imgURL: sunny,
     temp: "36C",
   },
   {
+    id:6,
     weekDey: "Saturday",
     imgURL: rain,
     temp: "37C",
   },
   {
+    id:7,
     weekDey: "Sunday",
     imgURL: sunny,
     temp: "39C",
