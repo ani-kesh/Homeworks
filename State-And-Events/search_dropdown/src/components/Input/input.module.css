@@ -1,0 +1,15 @@
+.counterInputs {
+  width: 80%;
+  padding: 12px 5px;
+  border: none;
+  background-color: rgb(168, 163, 163);
+  font-size: 20px;
+  color: white;
+}
+.counterInputs:focus {
+  outline: none;
+}
+
+.counterInputs::placeholder {
+  color: rgb(240, 236, 236);
+}
