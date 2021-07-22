@@ -6,7 +6,8 @@ import { setItems, getItems } from "../../helpers/localStorage";
 export default class Todo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {    
+    this.state = {
+      allTodos: getItems("todo") !== null ? [...getItems("todo")] : [],
       todos: getItems("todo") !== null ? [...getItems("todo")] : [],
       todoInputText: "",
     };
@@ -22,6 +23,17 @@ export default class Todo extends React.Component {
             id: Math.random(),
             isEdit: false,
             draft: this.state.todoInputText,
+            isComplete: false,
+          },
+        ],
+        allTodos: [
+          ...this.state.todos,
+          {
+            text: this.state.todoInputText,
+            id: Math.random(),
+            isEdit: false,
+            draft: this.state.todoInputText,
+            isComplete: false,
           },
         ],
         todoInputText: "",
@@ -47,6 +59,9 @@ export default class Todo extends React.Component {
       todos: todos.map((todo) =>
         todo.id === id ? { ...todo, draft: ev.target.value } : todo
       ),
+      allTodos: todos.map((todo) =>
+        todo.id === id ? { ...todo, draft: ev.target.value } : todo
+      ),
     }));
   };
 
@@ -56,25 +71,37 @@ export default class Todo extends React.Component {
       todos: todos.map((todo) =>
         todo.id === id ? { ...todo, isEdit: !todo.isEdit } : todo
       ),
+      allTodos: todos.map((todo) =>
+        todo.id === id ? { ...todo, isEdit: !todo.isEdit } : todo
+      ),
     }));
   };
 
   handleSave = (id, value) => (e) => {
     e.stopPropagation();
-
-    this.setState(({ todos }) => ({
-      todos: todos.map((todo) =>
-        todo.id === id
-          ? { ...todo, text: todo.draft, isEdit: false, isComplete: false }
-          : todo
-      ),
-    }));
+    if (value.trim() !== "") {
+      this.setState(({ todos }) => ({
+        todos: todos.map((todo) =>
+          todo.id === id
+            ? { ...todo, text: todo.draft, isEdit: false, isComplete: false }
+            : todo
+        ),
+        allTodos: todos.map((todo) =>
+          todo.id === id
+            ? { ...todo, text: todo.draft, isEdit: false, isComplete: false }
+            : todo
+        ),
+      }));
+    }
   };
 
   handleComplete = (id) => (e) => {
     e.stopPropagation();
     this.setState(({ todos }) => ({
       todos: todos.map((todo) =>
+        todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
+      ),
+      allTodos: todos.map((todo) =>
         todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
       ),
     }));
@@ -85,6 +112,7 @@ export default class Todo extends React.Component {
 
     this.setState(({ todos }) => ({
       todos: todos.filter((todo) => todo.id !== id),
+      allTodos: todos.filter((todo) => todo.id !== id),
     }));
   };
 
@@ -97,18 +125,38 @@ export default class Todo extends React.Component {
         : todos.map((todo) => {
             return { ...todo, isComplete: true };
           }),
+      allTodos: todos.every((todo) => todo.isComplete)
+        ? todos.map((todo) => {
+            return { ...todo, isComplete: false };
+          })
+        : todos.map((todo) => {
+            return { ...todo, isComplete: true };
+          }),
     }));
   };
 
-  handleShowAll = ()=>{
+  handleShowAll = () => {
     this.setState({
-      todos:[...this.state.todos],
-    })
-  }
+      todos: [...this.state.allTodos],
+    });
+  };
 
-  handleShowActives = () =>  {
-    console.log("aaa")
-    this.setState(({ todos }) => ({
+  handleShowActives = () => {
+    console.log("aaa");
+    this.setState(({ allTodos }) => ({
+      todos: allTodos.filter((todo) => !todo.isComplete),
+    }));
+  };
+
+  handleShowCompleteds = () => {
+    this.setState(({ allTodos }) => ({
+      todos: allTodos.filter((todo) => todo.isComplete),
+    }));
+  };
+
+  handleClearCompleteds = () => {
+    this.setState(({ allTodos, todos }) => ({
+      allTodos: allTodos.filter((todo) => !todo.isComplete),
       todos: todos.filter((todo) => !todo.isComplete),
     }));
   };
@@ -174,13 +222,29 @@ export default class Todo extends React.Component {
               value="Check All"
               onClick={this.handleCheckAll}
             />
-            <Input type="button" className="ml-40 px-2 py-1" value="All" onClick={this.handleShowAll}/>
-            <Input type="button" className="mx-1 px-2 py-1" value="Active"  onClick={this.handleShowActives}/>
-            <Input type="button" className="mx-1 px-2 py-1" value="Completed" />
+            <Input
+              type="button"
+              className="ml-40 px-2 py-1"
+              value="All"
+              onClick={this.handleShowAll}
+            />
+            <Input
+              type="button"
+              className="mx-1 px-2 py-1"
+              value="Active"
+              onClick={this.handleShowActives}
+            />
+            <Input
+              type="button"
+              className="mx-1 px-2 py-1"
+              value="Completed"
+              onClick={this.handleShowCompleteds}
+            />
             <Input
               type="button"
               className="mx-1 px-2 py-1"
               value="Clear Completed"
+              onClick={this.handleClearCompleteds}
             />
           </div>
         </div>
