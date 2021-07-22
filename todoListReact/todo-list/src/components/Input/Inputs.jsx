@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 function Input({
   onChange,
   id,
@@ -23,4 +24,15 @@ function Input({
     </>
   );
 }
+
+Input.propTypes = {
+  onChange: PropTypes.func,
+  id: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  onKeyPress: PropTypes.func,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+};
 export default Input;

@@ -3,13 +3,58 @@ import Input from "../Input/Inputs";
 import ListItem from "../ListItem/ListItem";
 import { setItems, getItems } from "../../helpers/localStorage";
 
+
+const classNames = require("classnames");
+
+const container = classNames([
+  "relative",
+  "w-full",
+  "flex-wrap",
+  "flex",
+  "justify-center",
+  "items-center",
+]);
+
+const todoContainer = classNames(["w-2/5"]);
+
+const headerContainer = classNames([
+  "flex",
+  "justify-end",
+  "items-center",
+  "w-full",
+  "bg-gray-300",
+  "mx-auto",
+]);
+
+const inputTodo = classNames([
+  "w-4/5",
+  "px-5",
+  "py-2",
+  "border-none",
+  "text-lg",
+  "bg-gray-300",
+  "focus:outline-none",
+]);
+
+const addTodoBtn = classNames(["px-5", "py-3", "ml-10"]);
+const contentContainer = classNames(["w-full"]);
+const footerButton = classNames(["mx-1", "px-2", "py-1"]);
+const allButton = classNames(["ml-40", "px-2", "py-1"]);
+
+const FilterStatuses = {
+  completed: "completed",
+  all: "all",
+  active: "active",
+};
+
+const footerContainer = classNames(["w-full", "bg-gray-300", "p-2"]);
 export default class Todo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allTodos: getItems("todo") !== null ? [...getItems("todo")] : [],
       todos: getItems("todo") !== null ? [...getItems("todo")] : [],
       todoInputText: "",
+      filterStatus: "all",
     };
   }
 
@@ -20,17 +65,7 @@ export default class Todo extends React.Component {
           ...this.state.todos,
           {
             text: this.state.todoInputText,
-            id: Math.random(),
-            isEdit: false,
-            draft: this.state.todoInputText,
-            isComplete: false,
-          },
-        ],
-        allTodos: [
-          ...this.state.todos,
-          {
-            text: this.state.todoInputText,
-            id: Math.random(),
+            id: Math.random().toString(),
             isEdit: false,
             draft: this.state.todoInputText,
             isComplete: false,
@@ -59,9 +94,6 @@ export default class Todo extends React.Component {
       todos: todos.map((todo) =>
         todo.id === id ? { ...todo, draft: ev.target.value } : todo
       ),
-      allTodos: todos.map((todo) =>
-        todo.id === id ? { ...todo, draft: ev.target.value } : todo
-      ),
     }));
   };
 
@@ -69,9 +101,6 @@ export default class Todo extends React.Component {
     e.stopPropagation();
     this.setState(({ todos }) => ({
       todos: todos.map((todo) =>
-        todo.id === id ? { ...todo, isEdit: !todo.isEdit } : todo
-      ),
-      allTodos: todos.map((todo) =>
         todo.id === id ? { ...todo, isEdit: !todo.isEdit } : todo
       ),
     }));
@@ -86,9 +115,12 @@ export default class Todo extends React.Component {
             ? { ...todo, text: todo.draft, isEdit: false, isComplete: false }
             : todo
         ),
-        allTodos: todos.map((todo) =>
+      }));
+    } else {
+      this.setState(({ todos }) => ({
+        todos: todos.map((todo) =>
           todo.id === id
-            ? { ...todo, text: todo.draft, isEdit: false, isComplete: false }
+            ? { ...todo, draft: todo.text, isEdit: false, isComplete: false }
             : todo
         ),
       }));
@@ -101,9 +133,6 @@ export default class Todo extends React.Component {
       todos: todos.map((todo) =>
         todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
       ),
-      allTodos: todos.map((todo) =>
-        todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
-      ),
     }));
   };
 
@@ -112,7 +141,6 @@ export default class Todo extends React.Component {
 
     this.setState(({ todos }) => ({
       todos: todos.filter((todo) => todo.id !== id),
-      allTodos: todos.filter((todo) => todo.id !== id),
     }));
   };
 
@@ -125,38 +153,11 @@ export default class Todo extends React.Component {
         : todos.map((todo) => {
             return { ...todo, isComplete: true };
           }),
-      allTodos: todos.every((todo) => todo.isComplete)
-        ? todos.map((todo) => {
-            return { ...todo, isComplete: false };
-          })
-        : todos.map((todo) => {
-            return { ...todo, isComplete: true };
-          }),
-    }));
-  };
-
-  handleShowAll = () => {
-    this.setState({
-      todos: [...this.state.allTodos],
-    });
-  };
-
-  handleShowActives = () => {
-    console.log("aaa");
-    this.setState(({ allTodos }) => ({
-      todos: allTodos.filter((todo) => !todo.isComplete),
-    }));
-  };
-
-  handleShowCompleteds = () => {
-    this.setState(({ allTodos }) => ({
-      todos: allTodos.filter((todo) => todo.isComplete),
     }));
   };
 
   handleClearCompleteds = () => {
-    this.setState(({ allTodos, todos }) => ({
-      allTodos: allTodos.filter((todo) => !todo.isComplete),
+    this.setState(({ todos }) => ({
       todos: todos.filter((todo) => !todo.isComplete),
     }));
   };
@@ -176,28 +177,41 @@ export default class Todo extends React.Component {
     }));
   };
 
+  selectFilter = (filterStatus) => () => {
+    this.setState({
+      filterStatus,
+    });
+  };
+
   render() {
+    const filteredTodos =
+      this.state.filterStatus === FilterStatuses.all
+        ? this.state.todos
+        : this.state.filterStatus === FilterStatuses.active
+        ? this.state.todos.filter((t) => !t.isComplete)
+        : this.state.todos.filter((t) => t.isComplete);
+
     return (
-      <div className="relative w-full flex-wrap flex justify-center items-center ">
-        <div className="w-2/5">
-          <div className="flex justify-end items-center w-full bg-gray-300 mx-auto">
+      <div className={container}>
+        <div className={todoContainer}>
+          <div className={headerContainer}>
             <Input
               type="text"
               value={this.state.todoInputText}
               onChange={this.handleTodoText}
               onKeyPress={this.handleKeyPress}
-              className="w-4/5 px-5 py-2 border-none text-lg bg-gray-300 focus:outline-none"
+              className={inputTodo}
               placeholder="What needs to be done?"
             />
             <Input
               value="Add"
               type="button"
               onClick={this.handleAddTodo}
-              className="px-5 py-3 ml-10"
+              className={addTodoBtn}
             />
           </div>
-          <div className="w-full">
-            {this.state.todos.map((el) => {
+          <div className={contentContainer}>
+            {filteredTodos.map((el) => {
               return (
                 <ListItem
                   label={el.text}
@@ -215,34 +229,34 @@ export default class Todo extends React.Component {
               );
             })}
           </div>
-          <div className="w-full bg-gray-300 p-2">
+          <div className={footerContainer}>
             <Input
               type="button"
-              className="mx-1 px-2 py-1"
+              className={footerButton}
               value="Check All"
               onClick={this.handleCheckAll}
             />
             <Input
               type="button"
-              className="ml-40 px-2 py-1"
+              className={allButton}
               value="All"
-              onClick={this.handleShowAll}
+              onClick={this.selectFilter("all")}
             />
             <Input
               type="button"
-              className="mx-1 px-2 py-1"
+              className={footerButton}
               value="Active"
-              onClick={this.handleShowActives}
+              onClick={this.selectFilter("active")}
             />
             <Input
               type="button"
-              className="mx-1 px-2 py-1"
+              className={footerButton}
               value="Completed"
-              onClick={this.handleShowCompleteds}
+              onClick={this.selectFilter("completed")}
             />
             <Input
               type="button"
-              className="mx-1 px-2 py-1"
+              className={footerButton}
               value="Clear Completed"
               onClick={this.handleClearCompleteds}
             />
@@ -252,3 +266,4 @@ export default class Todo extends React.Component {
     );
   }
 }
+
